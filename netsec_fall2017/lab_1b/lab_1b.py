@@ -35,7 +35,8 @@ class StringCompareResult(PacketType):
 	FIELDS=[
 		("id",INT32),
 		("output",STRING),
-		("checker",BOOL)
+		("checker",BOOL),
+		("uint",UINT32)
 		]
 
 def basicUnitTest():
@@ -64,9 +65,11 @@ def basicUnitTest():
 	#using deserialize to verify packet4
 	packet4=StringCompareResult()
 	packet4.id=100
-	#experimenting with the BOOL,if the packet4.checker=True or False, the output of program will report the name of the input is not defined
+	#Verifying that when the unit value is negative, the program will report ERROR.
+	packet4.uint=22
+	#experimenting with the BOOL,if the packet4.checker=True or False for character, the output of program will report the name of the input is not defined. However, if the packet4.checker is equal to digit or string, it also can work correctly. 
 	packet4.checker=True
-	packet4.checker=False
+	packet4.checker=1791
 	#Verifying deserialize using list 
 	packet4.list=['physics','chemistry',2000]
 	packet4.output="right"
