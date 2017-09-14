@@ -5,23 +5,21 @@ from PacketConnect import RequestStringCompare,StringCompareQuestion,StringCompa
 import time
 
 class ClientProtocol(asyncio.Protocol):
-	def __init__(self,loop):
+	def __init__(self):
 		self.transport = None
-		self.loop=loop
 		self._Deserializer = PacketType.Deserializer()	
+		#self.transport.write(self.askQuestion())
 		#for x in range(0,3):
 		#signal.alarm(2)
 		#time.sleep(1)
 
 	
 	def connection_made(self, transport):
-		self.transport.write()	
-		print('Connect')
 		self.transport=transport
 		self._Deserializer = PacketType.Deserializer()
 		print("Client(prepare)-->server(preparse):the Client is Connecting to server...")
 		self.transport.write(self.askQuestion())
-		time.sleep(1)
+		time.sleep(10)
 		self.transport.write(self.askQuestion())
 	
 		
@@ -54,7 +52,7 @@ class ClientProtocol(asyncio.Protocol):
 
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
-    coro = playground.getConnector().create_playground_connection(lambda: ClientProtocol(loop), '20174.1.1.1',888)
+    coro = playground.getConnector().create_playground_connection(lambda: ClientProtocol(), '20174.1.1.1',888)
     loop.run_until_complete(coro)
     loop.run_forever()
     loop.close()
