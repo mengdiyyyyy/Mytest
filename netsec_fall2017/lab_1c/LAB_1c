@@ -1,0 +1,9 @@
+#################
+	1.For the lab_1c,first i run the client and server files to transfer through TCP/IP protocol. Using loop = asyncio.get_event_loop().
+
+	2.Then i use the UnitTest to test the protocol which not through the TCP/IP protocol, just talking each other dirctly. The client first send a question to server, when server get the question it will send back the question to client.We use the data_received to call the askQuestion function in client.
+
+	3.When client answer the question, the server will judge that whether the answer is correct or not. Using the if function in the stringclass to judge the answer of the client. 
+
+	4.After finishing all the steps of transfer, the server and client will close. After the updating of the playground, if one of the server and client call the function self.transport.close(), the two side will both close.
+
